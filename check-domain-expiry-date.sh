@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# WARNING! For .com domain verisign may return incorrect data, compare it with domain registrar whois.
+# WARNING! For .com domain script may return incorrect data, compare it with domain registrar whois.
 #
 # Script returns the list of domains with days amount left to their expiration.
 # Run this script with a parameter if you want to send an email when expiration date is less than 30 days.
@@ -11,6 +11,12 @@
 
 # Array with domains
 array=( twitter.com facebook.com page.is imena.ua)
+
+# Check for whois
+if ( ! which whois >/dev/null 2>/dev/null );  then
+	echo "You do not have the 'whois' tool installed."
+	exit 2
+fi
 
 for name in "${array[@]}"
         do
