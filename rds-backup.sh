@@ -38,6 +38,12 @@ case $period in
 	keep_snapshots=3 #this will delete db-snapsots starts from 3rd
 	db-backup
 	;;
+	daily)
+	keep_snapshots=7 #this will delete db-snapsots starts from 7th
+	if [ $(date '+%a') != Sun ];then #check if today a 1st day of week
+	db-backup
+	fi
+	;;
 	*) #wrong period, show help
 	echo "$(basename "$0") [ARG] -- script for RDS backups
 	USAGE:
